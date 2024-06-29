@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6ejltfs8lblu"]
+
+[ext_resource type="Script" path="res://Tile.gd" id="1_lnfgr"]
+[ext_resource type="Texture2D" uid="uid://bk3g6betivyxc" path="res://assets/64x64/empty_64x64.png" id="2_5af1c"]
+[ext_resource type="Texture2D" uid="uid://be0btbtoeyvpw" path="res://assets/64x64/bomb_64x64.png" id="3_quepv"]
+[ext_resource type="Texture2D" uid="uid://bsssjkcxrkjnp" path="res://assets/64x64/unknown_2_64x64.png" id="4_81f7p"]
+[ext_resource type="Texture2D" uid="uid://u8npm470dq5k" path="res://assets/64x64/flag_1_64x64.png" id="5_mu4pc"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_lnfgr")
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("2_5af1c")
+
+[node name="Bomb" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 32)
+texture = ExtResource("3_quepv")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cover" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("4_81f7p")
+
+[node name="Flag" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 32)
+texture = ExtResource("5_mu4pc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]

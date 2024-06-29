@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://i0wq1key5dhk"]
+[gd_scene load_steps=6 format=3 uid="uid://i0wq1key5dhk"]
 
 [ext_resource type="Script" path="res://Tile.gd" id="1_v85uh"]
-[ext_resource type="Texture2D" uid="uid://digi28fgry52w" path="res://assets/64x64/unknown_1_64x64.png" id="2_iat6w"]
+[ext_resource type="Texture2D" uid="uid://bk3g6betivyxc" path="res://assets/64x64/empty_64x64.png" id="2_epmu7"]
 [ext_resource type="Texture2D" uid="uid://bsssjkcxrkjnp" path="res://assets/64x64/unknown_2_64x64.png" id="3_uq1li"]
 [ext_resource type="Texture2D" uid="uid://be0btbtoeyvpw" path="res://assets/64x64/bomb_64x64.png" id="4_6qca3"]
+[ext_resource type="Texture2D" uid="uid://u8npm470dq5k" path="res://assets/64x64/flag_1_64x64.png" id="5_t1ips"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,14 +12,36 @@
 script = ExtResource("1_v85uh")
 
 [node name="Back" type="Sprite2D" parent="Tile"]
-texture = ExtResource("2_iat6w")
-
-[node name="Cover" type="Sprite2D" parent="Tile"]
-texture = ExtResource("3_uq1li")
+position = Vector2(32, 32)
+texture = ExtResource("2_epmu7")
 
 [node name="Bomb" type="Sprite2D" parent="Tile"]
 visible = false
+position = Vector2(32, 32)
 texture = ExtResource("4_6qca3")
+
+[node name="Label" type="Label" parent="Tile"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cover" type="Sprite2D" parent="Tile"]
+position = Vector2(32, 32)
+texture = ExtResource("3_uq1li")
+
+[node name="Flag" type="Sprite2D" parent="Tile"]
+visible = false
+position = Vector2(32, 32)
+texture = ExtResource("5_t1ips")
 
 [node name="Control" type="Control" parent="Tile"]
 layout_mode = 3
@@ -27,27 +50,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 64.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="Tile"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
 
 [connection signal="gui_input" from="Tile/Control" to="Tile" method="_on_control_gui_input"]
