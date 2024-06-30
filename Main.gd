@@ -1,16 +1,13 @@
 extends Node2D
 
-enum GAME_STATE { MENU, IN_PROGRESS, PAUSE, WIN, LOOSE }
-
+enum GAME_STATE {MENU, IN_PROGRESS, PAUSE, WIN, LOOSE}
 
 func _ready():
 	$Menu/Status.hide()
 	update_status(GAME_STATE.MENU)
 
-
 func start_game():
 	$Board.generate()
-
 
 func update_status(state: GAME_STATE):
 	$Menu.visible = state != GAME_STATE.IN_PROGRESS
@@ -26,7 +23,6 @@ func update_status(state: GAME_STATE):
 			$Menu/Status.text = "You win!"
 		GAME_STATE.LOOSE:
 			$Menu/Status.text = "You loose!"
-
 
 func _on_start_pressed() -> void:
 	update_status(GAME_STATE.IN_PROGRESS)

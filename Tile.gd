@@ -4,12 +4,10 @@ var is_covered: bool = true
 var flagged: bool = false
 var is_mine: bool = false
 
-
 func set_bomb():
 	is_mine = true
 	$Bomb.show()
 	$Label.hide()
-
 
 func uncover():
 	if flagged == false:
@@ -26,14 +24,12 @@ func uncover():
 				if tile.is_covered:
 					tile.uncover()
 
-
 func count_surrounds():
 	var count: int = 0
 	for i in get_tree().get_nodes_in_group("Tile"):
 		if i.is_mine:
 			count += 1
 	return count
-
 
 func get_surrounds() -> Array[Variant]:
 	var surrounds: Array[Variant] = []
@@ -53,7 +49,6 @@ func get_surrounds() -> Array[Variant]:
 				surrounds.append(title)
 	return surrounds
 
-
 func toggle_flag():
 	if is_covered:
 		if flagged:
@@ -62,7 +57,6 @@ func toggle_flag():
 		else:
 			$Flag.show()
 			flagged = true
-
 
 func _on_control_gui_input(event):
 	if event is InputEventMouseButton:
