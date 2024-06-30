@@ -7,6 +7,7 @@ var is_mine: bool = false
 func set_bomb():
 	is_mine = true
 	$Bomb.show()
+	$Label.hide()
 
 func uncover():
 	if flagged == false:
@@ -18,6 +19,10 @@ func uncover():
 				count_surrounds +=1
 		if count_surrounds > 0:
 			$Label.text = str(count_surrounds)
+		else:
+			for tile in get_surrounds():
+				if tile.is_covered:
+					tile.uncover()
 
 func count_surrounds():
 	var count: int = 0
