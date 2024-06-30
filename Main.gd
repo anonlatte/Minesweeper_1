@@ -22,4 +22,4 @@ func set_bombs():
 		var tile = tiles[randi() % len(tiles)]
 		if not tile.is_mine:
 			tile.set_bomb()
-			n += 1
+			n +=1
