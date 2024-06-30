@@ -1,4 +1,4 @@
-extends Node2D
+extends Container
 
 var is_covered: bool = true
 var flagged: bool = false
@@ -23,13 +23,6 @@ func uncover():
 			for tile in get_surrounds():
 				if tile.is_covered:
 					tile.uncover()
-
-func count_surrounds():
-	var count: int = 0
-	for i in get_tree().get_nodes_in_group("Tile"):
-		if i.is_mine:
-			count += 1
-	return count
 
 func get_surrounds() -> Array[Variant]:
 	var surrounds: Array[Variant] = []
@@ -58,7 +51,7 @@ func toggle_flag():
 			$Flag.show()
 			flagged = true
 
-func _on_control_gui_input(event):
+func _on_tile_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("left_click"):
 			if !is_mine:

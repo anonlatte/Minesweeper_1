@@ -1,54 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://i0wq1key5dhk"]
+[gd_scene load_steps=4 format=3 uid="uid://i0wq1key5dhk"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_aqh2a"]
 [ext_resource type="Script" path="res://Board.gd" id="2_diq6s"]
+[ext_resource type="Script" path="res://Time.gd" id="3_t7c7u"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 script = ExtResource("1_aqh2a")
 
-[node name="Board" type="Node2D" parent="."]
+[node name="Board" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("2_diq6s")
 
-[node name="Menu" type="CenterContainer" parent="."]
-offset_right = 640.0
-offset_bottom = 640.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+[node name="Menu" type="VFlowContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
-[node name="Start" type="Button" parent="Menu/VBoxContainer"]
+[node name="Status" type="Label" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 121
+text = "Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="Menu"]
 layout_mode = 2
 text = "Start
 "
 
-[node name="Difficult" type="Button" parent="Menu/VBoxContainer"]
+[node name="Difficult" type="Button" parent="Menu"]
 layout_mode = 2
 text = "Change Difficult"
 
-[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+[node name="Settings" type="Button" parent="Menu"]
 layout_mode = 2
 text = "Settings"
 
-[node name="Exit" type="Button" parent="Menu/VBoxContainer"]
+[node name="Exit" type="Button" parent="Menu"]
 layout_mode = 2
 text = "Exit
 "
 
-[node name="Status" type="Label" parent="Menu"]
-layout_mode = 2
-text = "In progress"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Time" type="Label" parent="."]
-visible = false
-offset_left = 557.0
-offset_right = 640.0
-offset_bottom = 23.0
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_t7c7u")
 
-[node name="Timer" type="Timer" parent="Time"]
-
-[connection signal="pressed" from="Menu/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/Exit" to="." method="_on_exit_pressed"]
