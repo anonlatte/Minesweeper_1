@@ -67,6 +67,9 @@ func toggle_flag():
 func _on_control_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("left_click"):
-			uncover()
+			if !is_mine:
+				uncover()
+			else:
+				get_parent().loose_game()
 		if event.is_action_pressed("right_click"):
 			toggle_flag()
