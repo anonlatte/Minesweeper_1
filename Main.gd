@@ -10,7 +10,7 @@ var tiles: Array
 func _ready():
 	for i in  row:
 		for j in col:
-			var tile = Tile.instantiate()
+			var tile: Node = Tile.instantiate()
 			tile.position = Vector2(i, j) * sprite_size
 			add_child(tile)
 	tiles = get_children()
