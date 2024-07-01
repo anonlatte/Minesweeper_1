@@ -1,12 +1,11 @@
-extends GridContainer
+extends Container
 
 var tiles: Array
 var Tile: PackedScene = preload ("res://Tile.tscn")
 var sprite_size: int
 
-func generate(rows: int, cols: int, bomb_count: int, sprite_size: int):
-	self.sprite_size = sprite_size
-	columns = cols
+func generate(rows: int, cols: int, bomb_count: int, new_sprite_size: int):
+	sprite_size = new_sprite_size
 	create_board(rows, cols)
 	set_bombs(bomb_count)
 
@@ -19,9 +18,9 @@ func create_board(rows: int, cols: int):
 		for j in cols:
 			var tile: Node = Tile.instantiate()
 			tile.position = Vector2(i, j) * sprite_size
+			print(tile.position)
 			tiles.append(tile)
 			add_child(tile)
-			print("Tile created at: ", tile.position / sprite_size)
 
 func set_bombs(bomb_count: int):
 	var n: int = 0
@@ -29,12 +28,21 @@ func set_bombs(bomb_count: int):
 		var tile = tiles[randi() % tiles.size()]
 		if !tile.is_mine:
 			tile.set_bomb()
-			print("Bomb set at: ", tile.position / sprite_size)
 			n += 1
 
-func loose_game():
+func loose():
 	for tile in tiles:
-		if (tile.is_mine):
+		if tile.is_mine:
 			tile.uncover()
-	var Main: Container = get_parent()
+	var Main = get_parent()
 	Main.update_status(Main.GAME_STATE.LOOSE)
+
+func check_progress():
+	var is_win: bool = true
+	for tile in tiles:
+		if tile.is_covered && !tile.is_mine:
+			is_win = false
+			break
+	if is_win:
+		var Main = get_parent()
+		Main.update_status(Main.GAME_STATE.WIN)

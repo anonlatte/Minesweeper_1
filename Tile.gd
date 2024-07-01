@@ -23,23 +23,28 @@ func uncover():
 			for tile in get_surrounds():
 				if tile.is_covered:
 					tile.uncover()
+		get_parent().check_progress()
 
 func get_surrounds() -> Array[Variant]:
 	var surrounds: Array[Variant] = []
 	var offsets: Array[Variant] = [
-		(Vector2.UP + Vector2.LEFT) * 64,
 		Vector2.UP * 64,
 		(Vector2.UP + Vector2.RIGHT) * 64,
-		Vector2.LEFT * 64,
 		Vector2.RIGHT * 64,
+		(Vector2.DOWN + Vector2.RIGHT) * 64,
+		Vector2.DOWN * 64,
 		(Vector2.DOWN + Vector2.LEFT) * 64,
-		Vector2.UP * 64,
-		(Vector2.DOWN + Vector2.RIGHT) * 64
+		Vector2.LEFT * 64,
+		(Vector2.UP + Vector2.LEFT) * 64,
 	]
+	for tile in get_parent().tiles:
+		print("Tile: ", tile.position, " is mine: ", tile.is_mine)
 	for offset in offsets:
-		for title in get_parent().tiles:
-			if title.position == self.position + offset:
-				surrounds.append(title)
+		for tile in get_parent().tiles:
+			if  tile == self:
+				print("Tile: ", tile.position, " offset: ", offset)
+			if tile.position == position + offset:
+				surrounds.append(tile)
 	return surrounds
 
 func toggle_flag():
@@ -57,6 +62,6 @@ func _on_tile_gui_input(event):
 			if !is_mine:
 				uncover()
 			else:
-				get_parent().loose_game()
+				get_parent().loose()
 		if event.is_action_pressed("right_click"):
 			toggle_flag()

@@ -4,26 +4,31 @@
 [ext_resource type="Script" path="res://Board.gd" id="2_diq6s"]
 [ext_resource type="Script" path="res://Time.gd" id="3_t7c7u"]
 
-[node name="Main" type="MarginContainer"]
+[node name="Main" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
 script = ExtResource("1_aqh2a")
 
-[node name="Board" type="GridContainer" parent="."]
+[node name="Board" type="Container" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("2_diq6s")
 
 [node name="Menu" type="VFlowContainer" parent="."]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 
@@ -36,25 +41,40 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Start" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(320, 65)
 layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
 text = "Start
 "
 
 [node name="Difficult" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(320, 65)
 layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
 text = "Change Difficult"
 
 [node name="Settings" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(320, 65)
 layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
 text = "Settings"
 
 [node name="Exit" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(320, 65)
 layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
 text = "Exit
 "
 
 [node name="Time" type="Label" parent="."]
 layout_mode = 2
+offset_left = 599.0
+offset_right = 640.0
+offset_bottom = 23.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "00:00"

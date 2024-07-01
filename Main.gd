@@ -1,4 +1,4 @@
-extends Container
+extends Control
 
 enum GAME_STATE {MENU, START, IN_PROGRESS, PAUSE, WIN, LOOSE}
 
@@ -31,12 +31,12 @@ func update_status(new_state: GAME_STATE):
 			$Menu/Status.show()
 
 func start_game():
-	var rows: int = 15
-	var cols: int = 10
-	var bomb_count: int = 15
+	var rows: int = 8
+	var cols: int = 8
+	var bomb_count: int = 4
 	var sprite_size = 64
-	# update window size
-	# get_viewport().size = Vector2(cols, rows) * sprite_size
+	# change board position to be centered. add padding from 0, 0
+	$Board.position = Vector2(64, 64)
 	$Time.show()
 	$Time.start()
 	$Board.show()
