@@ -11,4 +11,4 @@ Welcome to Minesweeper, a minimalist version of the classic game! This repositor
 
 ## Screenshots
 
-![Minesweeper](.github/demo.gif)
+![Minesweeper](assets/demo.gif)
