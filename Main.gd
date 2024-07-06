@@ -1,11 +1,13 @@
 extends Control
 
-enum GAME_STATE {MENU, START, IN_PROGRESS, PAUSE, WIN, LOOSE}
+enum GAME_STATE { MENU, START, IN_PROGRESS, PAUSE, WIN, LOOSE }
 
 var state: GAME_STATE = GAME_STATE.MENU
 
+
 func _ready():
 	update_status(state)
+
 
 func update_status(new_state: GAME_STATE):
 	state = new_state
@@ -30,6 +32,7 @@ func update_status(new_state: GAME_STATE):
 			$Menu/Status.text = "You loose!"
 			$Menu/Status.show()
 
+
 func start_game():
 	var rows: int = 8
 	var cols: int = 8
@@ -43,16 +46,20 @@ func start_game():
 	$Board.generate(rows, cols, bomb_count, sprite_size)
 	$Board.set_process_input(true)
 
+
 func _on_start_pressed() -> void:
 	update_status(GAME_STATE.START)
 
+
 func _on_exit_pressed():
 	get_tree().quit()
-	
+
+
 func _input(event):
 	if event is InputEventKey && event.keycode == KEY_ESCAPE:
 		if event.pressed:
 			handle_escape()
+
 
 func handle_escape():
 	match state:
